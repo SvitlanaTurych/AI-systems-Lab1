@@ -1,19 +1,10 @@
-"""
-Ітеративний алгоритм пошуку у глибину (DFS) зі стеком, реалізований
-без залежності від GUI, щоб його можна було покроково викликати
-з таймера інтерфейсу (або використовувати окремо, наприклад у тестах).
-"""
-
-
 class DFSSearch:
-    """Тримає весь стан покрокового DFS: стек, відвідані вершини,
-    батьківські покажчики та лічильник розкритих вершин."""
 
     def __init__(self, graph, start, goal, order="asc"):
         self.graph = graph
         self.start = start
         self.goal = goal
-        self.order = order  # "asc" або "desc"
+        self.order = order  
 
         self.stack = [start]
         self.visited = set()
@@ -26,13 +17,6 @@ class DFSSearch:
         self.finished = False
 
     def step(self):
-        """Виконує один крок алгоритму.
-
-        Повертає один із рядків:
-        - "expanded"  - розкрито чергову (нецільову) вершину;
-        - "found"     - розкрито цільову вершину, шлях побудовано;
-        - "not_found" - стек порожній, шлях не існує.
-        """
         if self.finished:
             return "not_found" if not self.found else "found"
 
@@ -60,8 +44,6 @@ class DFSSearch:
 
         neighbors = sorted(self.graph.neighbors(node), reverse=(self.order == "desc"))
         to_push = [nb for nb in neighbors if nb not in self.visited]
-        # пушимо у зворотному порядку, щоб зі стеку першою вийшла
-        # вершина, яка йде першою у обраному порядку обходу (LIFO)
         for nb in reversed(to_push):
             self.stack.append(nb)
             if nb not in self.parent:

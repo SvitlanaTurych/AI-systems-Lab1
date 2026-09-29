@@ -1,5 +1,3 @@
-"""Головне вікно програми: панель керування + область відображення графу."""
-
 import csv
 import time
 from datetime import datetime
@@ -34,7 +32,7 @@ class DFSVisualization(QMainWindow):
         self.pos = {}
         self.tree_edges = []
 
-        self.search = None            # екземпляр DFSSearch під час пошуку
+        self.search = None            
         self.search_start_time = None
 
         self.timer = QTimer()
@@ -43,9 +41,6 @@ class DFSVisualization(QMainWindow):
         self._build_ui()
         self.load_graph()
 
-    # ------------------------------------------------------------------
-    #  UI
-    # ------------------------------------------------------------------
     def _build_ui(self):
         central = QWidget()
         self.setCentralWidget(central)
@@ -185,9 +180,6 @@ class DFSVisualization(QMainWindow):
     def _update_load_button_text(self, text):
         self.load_btn.setText(f"Load {text}")
 
-    # ------------------------------------------------------------------
-    #  Робота з графом
-    # ------------------------------------------------------------------
     def load_graph(self):
         n = int(self.size_combo.currentText())
         self.graph_type = self.type_combo.currentText()
@@ -323,9 +315,6 @@ class DFSVisualization(QMainWindow):
         self._reset_search_state()
         self.draw_graph()
 
-    # ------------------------------------------------------------------
-    #  Пошук у глибину (керування DFSSearch з таймера)
-    # ------------------------------------------------------------------
     def _reset_search_state(self):
         self.timer.stop()
         self.search = None
@@ -426,10 +415,7 @@ class DFSVisualization(QMainWindow):
                 elapsed_ms,
                 found,
             ])
-
-    # ------------------------------------------------------------------
-    #  Відмальовка графу
-    # ------------------------------------------------------------------
+            
     def draw_graph(self):
         self.figure.clear()
         ax = self.figure.add_subplot(111)

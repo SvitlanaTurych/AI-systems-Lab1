@@ -1,8 +1,3 @@
-"""
-Генерація графів (детермінована, за фіксованим seed) та їх
-ієрархічне (пошарове) розташування для відображення.
-"""
-
 import random
 from collections import deque
 
@@ -10,8 +5,6 @@ import networkx as nx
 
 
 def generate_tree_edges(n, seed=42, min_branches=5):
-    """Генерує ребра дерева (parent, child) з не менше ніж
-    min_branches гілками від кореня (вершина 0)."""
     rnd = random.Random(seed)
     nodes = list(range(1, n))
     rnd.shuffle(nodes)
@@ -35,7 +28,6 @@ def generate_tree_edges(n, seed=42, min_branches=5):
 
 
 def generate_explicit_graph(n, seed=42):
-    """Звичайний розгалужений граф: дерево + додаткові ребра (цикли)."""
     tree_edges = generate_tree_edges(n, seed=seed)
     G = nx.Graph()
     G.add_nodes_from(range(n))
@@ -56,7 +48,6 @@ def generate_explicit_graph(n, seed=42):
 
 
 def generate_tree_graph(n, seed=42):
-    """Чисте дерево (без циклів)."""
     tree_edges = generate_tree_edges(n, seed=seed)
     G = nx.Graph()
     G.add_nodes_from(range(n))
@@ -65,9 +56,6 @@ def generate_tree_graph(n, seed=42):
 
 
 def make_directed(G, tree_edges, seed=42):
-    """Перетворює неорієнтований граф в орієнтований: ребра дерева
-    спрямовуються від батька до нащадка, решта (додаткові) ребер
-    отримують випадковий напрям."""
     rnd = random.Random(seed + 2)
     tree_set = set(tree_edges) | {(v, u) for (u, v) in tree_edges}
     D = nx.DiGraph()
@@ -88,8 +76,6 @@ def make_directed(G, tree_edges, seed=42):
 
 
 def layered_positions(G, root=0):
-    """Ієрархічне (пошарове) розташування вершин, однакове для
-    дерева, звичайного графу та орграфу — для читабельності."""
     UG = G.to_undirected() if G.is_directed() else G
     if root not in UG.nodes():
         root = next(iter(UG.nodes()))
@@ -107,7 +93,6 @@ def layered_positions(G, root=0):
                 order.append(nb)
                 queue.append(nb)
 
-    # ізольовані/недосяжні вершини - окремим рівнем внизу
     for node in UG.nodes():
         if node not in levels:
             levels[node] = 0

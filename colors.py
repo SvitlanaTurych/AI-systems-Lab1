@@ -1,7 +1,5 @@
-"""Кольори станів вершин під час візуалізації DFS."""
-
-COLOR_UNVISITED = "#BEBEBE"   # сірий  - ще не розглянуто
-COLOR_IN_STACK = "#FFD700"    # жовтий - у стеку (черга на розкриття)
-COLOR_CURRENT = "#FFA500"     # помаранчевий - поточна вершина
-COLOR_EXPANDED = "#87CEFA"    # блакитний - вже розкрита
-COLOR_PATH = "#2E8B57"        # зелений - вершини знайденого шляху
+COLOR_UNVISITED = "#BEBEBE"   
+COLOR_IN_STACK = "#FFD700"    
+COLOR_CURRENT = "#FFA500"     
+COLOR_EXPANDED = "#87CEFA"    
+COLOR_PATH = "#2E8B57"        
