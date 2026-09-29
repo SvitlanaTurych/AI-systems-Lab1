@@ -1,0 +1,2 @@
+timestamp,graph_type,n_nodes,n_edges,start,goal,order,visited,expanded,path_len,time_ms,found
+1790678035.7971985,Directed Graph,30,39,0,25,asc,24,24,3,9823,True

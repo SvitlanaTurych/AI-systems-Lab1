@@ -1,0 +1,2 @@
+timestamp,graph_type,n_nodes,n_edges,start,goal,order,visited,expanded,path_len,time_ms,found
+1790587905.4561536,Explicit Graph,30,39,0,10,desc,28,28,3,1845,True

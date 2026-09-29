@@ -1,0 +1,2 @@
+timestamp,graph_type,n_nodes,n_edges,start,goal,order,visited,expanded,path_len,time_ms,found
+1790677449.955707,Tree,30,29,0,25,asc,17,17,3,6933,True
